@@ -4,25 +4,26 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1E1F29;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainClient">
+<AnchorPane prefHeight="550.0" prefWidth="950.0" style="-fx-background-color: #1E1F29;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainClient">
    <children>
       <Text fill="WHITE" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salesperson Placeholder">
          <font>
             <Font name="Noto Sans Regular" size="18.0" />
          </font>
       </Text>
-      <TabPane layoutX="18.0" layoutY="47.0" prefHeight="338.0" prefWidth="566.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="14.0" layoutY="43.0" prefHeight="492.0" prefWidth="923.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab closable="false" text="Products">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView prefHeight="306.0" prefWidth="566.0">
+                        <TableView prefHeight="460.0" prefWidth="923.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="Name" />
-                            <TableColumn prefWidth="75.0" text="Details" />
-                              <TableColumn prefWidth="75.0" text="Price" />
+                            <TableColumn maxWidth="185.0" minWidth="165.0" prefWidth="175.0" text="Name" />
+                            <TableColumn maxWidth="260.0" minWidth="240.0" prefWidth="250.0" text="Details" />
+                              <TableColumn maxWidth="90.0" minWidth="70.0" text="Price" />
+                              <TableColumn maxWidth="130.0" minWidth="110.0" prefWidth="120.0" text="Ammount Left" />
+                              <TableColumn maxWidth="297.0" minWidth="287.0" prefWidth="297.0" />
                           </columns>
                         </TableView>
                      </children>
