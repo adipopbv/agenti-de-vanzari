@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="550.0" prefWidth="950.0"
+            style="-fx-background-color: #1E1F29;" xmlns="http://javafx.com/javafx/11.0.1"
+            fx:controller="clients.MainClient">
+    <Text fx:id="topLabel" fill="WHITE" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0"
+          text="Salesperson Placeholder">
+        <font>
+            <Font name="Noto Sans Regular" size="18.0"/>
+        </font>
+    </Text>
+    <TabPane layoutX="14.0" layoutY="43.0" prefHeight="492.0" prefWidth="923.0" tabClosingPolicy="UNAVAILABLE">
+        <Tab closable="false" text="Products">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <TableView fx:id="productsTable" prefHeight="460.0" prefWidth="923.0">
+                    <columns>
+                        <TableColumn fx:id="productNameColumn" maxWidth="145.0" minWidth="125.0" prefWidth="135.0"
+                                     text="Name"/>
+                        <TableColumn fx:id="productDetailsColumn" maxWidth="260.0" minWidth="240.0" prefWidth="250.0"
+                                     text="Details"/>
+                        <TableColumn fx:id="productPriceColumn" maxWidth="90.0" minWidth="70.0" text="Price"/>
+                        <TableColumn fx:id="productAmountLeftColumn" maxWidth="130.0" minWidth="110.0" prefWidth="120.0"
+                                     text="Amount Left"/>
+                        <TableColumn fx:id="productActionColumn" maxWidth="347.0" minWidth="337.0" prefWidth="347.0"/>
+                    </columns>
+                </TableView>
+            </AnchorPane>
+        </Tab>
+        <Tab closable="false" text="Orders history">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <TableView fx:id="ordersTable" prefHeight="461.0" prefWidth="923.0">
+                    <columns>
+                        <TableColumn fx:id="orderProductNameColumn" maxWidth="240.0" minWidth="220.0" prefWidth="230.0"
+                                     text="Product Name"/>
+                        <TableColumn fx:id="orderProductCountColumn" maxWidth="130.0" minWidth="110.0" prefWidth="120.0"
+                                     text="Product Count"/>
+                        <TableColumn fx:id="orderDateColumn" maxWidth="210.0" minWidth="190.0" prefWidth="200.0"
+                                     text="Date"/>
+                        <TableColumn fx:id="orderStatusColumn" maxWidth="120.0" minWidth="100.0" prefWidth="110.0"
+                                     text="Status"/>
+                        <TableColumn fx:id="orderActionColumn" maxWidth="262.0" minWidth="252.0" prefWidth="262.0"/>
+                    </columns>
+                </TableView>
+            </AnchorPane>
+        </Tab>
+    </TabPane>
+</AnchorPane>
