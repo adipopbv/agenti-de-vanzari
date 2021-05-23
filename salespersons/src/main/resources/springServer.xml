@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="userRepository" class="repositories.hibernate.UserHibernateRepository"/>
+    <bean id="productRepository" class="repositories.hibernate.ProductHibernateRepository"/>
+    <bean id="orderRepository" class="repositories.hibernate.OrderHibernateRepository"/>
+
+    <bean id="services" class="services.Services">
+        <constructor-arg ref="userRepository"/>
+        <constructor-arg ref="productRepository"/>
+        <constructor-arg ref="orderRepository"/>
+    </bean>
+
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <property name="serviceName" value="pr1Java"/>
+        <property name="service" ref="services"/>
+        <property name="serviceInterface" value="services.IServices"/>
+        <property name="servicePort" value="1099"/>
+    </bean>
+</beans>
