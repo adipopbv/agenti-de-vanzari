@@ -1,22 +1,24 @@
 package domain;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private Integer id;
     private String name;
     private String details;
     private Integer price;
-    private Order order;
+    private Integer amountLeft;
 
     public Product() {
 
     }
 
-    public Product(Integer id, String name, String details, Integer price, Order order) {
+    public Product(Integer id, String name, String details, Integer price, Integer amountLeft) {
         this.id = id;
         this.name = name;
         this.details = details;
         this.price = price;
-        this.order = order;
+        this.amountLeft = amountLeft;
     }
 
     public Integer getId() {
@@ -51,11 +53,11 @@ public class Product {
         this.price = price;
     }
 
-    public Order getOrder() {
-        return order;
+    public Integer getAmountLeft() {
+        return amountLeft;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setAmountLeft(Integer amountLeft) {
+        this.amountLeft = amountLeft;
     }
 }

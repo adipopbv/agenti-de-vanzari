@@ -1,40 +1,40 @@
 package repositories.hibernate;
 
-import domain.Product;
+import domain.Salesperson;
 import domain.exceptions.NotFoundException;
+import repositories.SalespersonRepository;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import repositories.ProductRepository;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductHibernateRepository extends HibernateRepository implements ProductRepository {
+public class SalespersonHibernateRepository extends HibernateRepository implements SalespersonRepository {
     @Override
-    public Product getOne(Integer id) throws NotFoundException {
+    public Salesperson getOne(String username) throws NotFoundException {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = null;
             try {
                 transaction = session.beginTransaction();
-                Product product = session.createQuery("from Product where id = " + id, Product.class).getSingleResult();
+                Salesperson salesperson = session.createQuery("from Salesperson where id like '" + username + "'", Salesperson.class).getSingleResult();
                 transaction.commit();
-                return product;
+                return salesperson;
             } catch (RuntimeException exception) {
                 if (transaction != null)
                     transaction.rollback();
-                throw new NotFoundException("product not found");
+                throw new NotFoundException("user not found");
             }
         }
     }
 
     @Override
-    public Iterable<Product> getAll() {
-        List<Product> salespeople = new ArrayList<>();
+    public Iterable<Salesperson> getAll() {
+        List<Salesperson> salespeople = new ArrayList<>();
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = null;
             try {
                 transaction = session.beginTransaction();
-                salespeople = session.createQuery("select product from Product product", Product.class).getResultList();
+                salespeople = session.createQuery("select salesperson from Salesperson salesperson", Salesperson.class).getResultList();
                 transaction.commit();
             } catch (RuntimeException exception) {
                 if (transaction != null)
@@ -46,17 +46,17 @@ public class ProductHibernateRepository extends HibernateRepository implements P
     }
 
     @Override
-    public void add(Product product) {
+    public void add(Salesperson salesperson) {
 
     }
 
     @Override
-    public Product modify(Integer id, Product newOrder) {
+    public Salesperson modify(String username, Salesperson newSalesperson) {
         return null;
     }
 
     @Override
-    public Product delete(Integer id) {
+    public Salesperson delete(String username) {
         return null;
     }
 }

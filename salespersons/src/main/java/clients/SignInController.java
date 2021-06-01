@@ -1,6 +1,6 @@
 package clients;
 
-import domain.User;
+import domain.Salesperson;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,9 +29,9 @@ public class SignInController extends WindowController {
             Parent parent = loader.load();
             MainController controller = loader.getController();
 
-            User user = services.signInUser(usernameField.getText(), passwordField.getText(), controller);
+            Salesperson salesperson = services.signInUser(usernameField.getText(), passwordField.getText(), controller);
 
-            controller.init(services, user);
+            controller.init(services, salesperson);
             Stage stage = new Stage();
             stage.setScene(new Scene(parent));
             stage.setTitle("Salespersons app!");

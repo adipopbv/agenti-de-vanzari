@@ -4,8 +4,10 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="domain.User" table="users">
+    <class name="domain.Salesperson" table="salespeople">
         <id name="username" column="username" type="java.lang.String"/>
         <property name="password" column="password" type="java.lang.String"/>
+        <property name="firstName" column="firstName" type="java.lang.String"/>
+        <property name="lastName" column="lastName" type="java.lang.String"/>
     </class>
 </hibernate-mapping>

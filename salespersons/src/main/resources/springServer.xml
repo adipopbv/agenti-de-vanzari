@@ -3,12 +3,14 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="userRepository" class="repositories.hibernate.UserHibernateRepository"/>
+    <bean id="salespersonRepository" class="repositories.hibernate.SalespersonHibernateRepository"/>
+    <bean id="clientRepository" class="repositories.hibernate.ClientHibernateRepository"/>
     <bean id="productRepository" class="repositories.hibernate.ProductHibernateRepository"/>
     <bean id="orderRepository" class="repositories.hibernate.OrderHibernateRepository"/>
 
     <bean id="services" class="services.Services">
-        <constructor-arg ref="userRepository"/>
+        <constructor-arg ref="salespersonRepository"/>
+        <constructor-arg ref="clientRepository"/>
         <constructor-arg ref="productRepository"/>
         <constructor-arg ref="orderRepository"/>
     </bean>

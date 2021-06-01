@@ -11,5 +11,6 @@
         <property name="productCount" column="productCount" type="java.lang.Integer"/>
         <property name="date" column="date" type="java.time.LocalDateTime"/>
         <property name="status" column="status" type="java.lang.String"/>
+        <many-to-one name="product" cascade="all" column="productId"/>
     </class>
 </hibernate-mapping>

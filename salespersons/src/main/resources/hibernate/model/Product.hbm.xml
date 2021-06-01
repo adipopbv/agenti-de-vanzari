@@ -11,6 +11,6 @@
         <property name="name" column="name" type="java.lang.String"/>
         <property name="details" column="details" type="java.lang.String"/>
         <property name="price" column="price" type="java.lang.Integer"/>
-        <many-to-one name="order" cascade="all" column="orderId"/>
+        <property name="amountLeft" column="amountLeft" type="java.lang.Integer"/>
     </class>
 </hibernate-mapping>

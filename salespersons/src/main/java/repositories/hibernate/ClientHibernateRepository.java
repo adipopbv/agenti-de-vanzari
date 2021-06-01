@@ -1,40 +1,41 @@
 package repositories.hibernate;
 
-import domain.User;
+import domain.Client;
+import domain.exceptions.DuplicateException;
 import domain.exceptions.NotFoundException;
-import repositories.UserRepository;
-
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import repositories.ClientRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserHibernateRepository extends HibernateRepository implements UserRepository {
+public class ClientHibernateRepository extends HibernateRepository implements ClientRepository {
     @Override
-    public User getOne(String username) throws NotFoundException {
+    public Client getOne(Integer id) throws NotFoundException {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = null;
             try {
                 transaction = session.beginTransaction();
-                User user = session.createQuery("from User where id like '" + username + "'", User.class).getSingleResult();
+                Client client = session.createQuery("from Client where id = " + id, Client.class).getSingleResult();
                 transaction.commit();
-                return user;
+                return client;
             } catch (RuntimeException exception) {
                 if (transaction != null)
                     transaction.rollback();
-                throw new NotFoundException("user not found");
+                throw new NotFoundException("client not found");
             }
         }
     }
 
     @Override
-    public Iterable<User> getAll() {
-        List<User> users = new ArrayList<>();
+    public Iterable<Client> getAll() {
+        List<Client> salespeople = new ArrayList<>();
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = null;
             try {
                 transaction = session.beginTransaction();
-                users = session.createQuery("select u from User u", User.class).getResultList();
+                salespeople = session.createQuery("select client from Client client", Client.class).getResultList();
                 transaction.commit();
             } catch (RuntimeException exception) {
                 if (transaction != null)
@@ -42,21 +43,21 @@ public class UserHibernateRepository extends HibernateRepository implements User
             }
         }
 
-        return users;
+        return salespeople;
     }
 
     @Override
-    public void add(User user) {
+    public void add(Client client) throws DuplicateException {
 
     }
 
     @Override
-    public User modify(String username, User newUser) {
+    public Client modify(Integer id, Client newClient) throws NotFoundException, DuplicateException {
         return null;
     }
 
     @Override
-    public User delete(String username) {
+    public Client delete(Integer id) throws NotFoundException {
         return null;
     }
 }

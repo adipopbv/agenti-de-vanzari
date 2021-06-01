@@ -1,8 +1,11 @@
 package clients;
 
+import clients.tableData.ClientTableData;
 import clients.tableData.OrderTableData;
 import clients.tableData.ProductTableData;
-import domain.User;
+import domain.Client;
+import domain.Product;
+import domain.Salesperson;
 import domain.observers.IObserver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,6 +50,7 @@ public class MainController extends WindowController implements IObserver {
     public TableColumn<OrderTableData, String> orderStatusColumn;
     @FXML
     public TableColumn<OrderTableData, HBox> orderActionColumn;
+    ObservableList<ClientTableData> clientsList = FXCollections.observableArrayList();
     ObservableList<ProductTableData> productsList = FXCollections.observableArrayList();
     ObservableList<OrderTableData> ordersList = FXCollections.observableArrayList();
 
@@ -54,34 +58,52 @@ public class MainController extends WindowController implements IObserver {
     }
 
     @Override
-    public void init(IServices services, User signedUser) {
-        super.init(services, signedUser);
+    public void init(IServices services, Salesperson signedSalesperson) {
+        super.init(services, signedSalesperson);
+
+        updateClientList();
 
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         productDetailsColumn.setCellValueFactory(new PropertyValueFactory<>("details"));
         productPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         productAmountLeftColumn.setCellValueFactory(new PropertyValueFactory<>("amountLeft"));
         productActionColumn.setCellValueFactory(new PropertyValueFactory<>("actions"));
-        Collection<ProductTableData> temp = new ArrayList<>();
-        temp.add(new ProductTableData(
-                "Aspirator 2000",
-                "cel mai cel aspirator din lume",
-                150,
-                24,
-                new HBox(
-                        new ChoiceBox<String>(),
-                        new Spinner<Integer>(),
-                        new Button("Place order")
-                )
-        ));
-        productsList.setAll(temp);
-        productsTable.setItems(productsList);
+        updateProductTable();
 
         orderProductNameColumn.setCellValueFactory(new PropertyValueFactory<>("productName"));
         orderProductCountColumn.setCellValueFactory(new PropertyValueFactory<>("productCount"));
         orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         orderStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
         orderActionColumn.setCellValueFactory(new PropertyValueFactory<>("actions"));
+        updateOrderTable();
+    }
+
+    private void updateClientList() {
+        Collection<ClientTableData> clients = new ArrayList<>();
+        for (Client client : services.getAllClients()) {
+            clients.add(new ClientTableData(
+                    client.getFirstName(),
+                    client.getLastName()
+            ));
+        }
+        clientsList.setAll(clients);
+    }
+
+    private void updateProductTable() {
+        Collection<ProductTableData> products = new ArrayList<>();
+        for (Product product : services.getAllProducts())
+            products.add(new ProductTableData(
+                    product.getName(),
+                    product.getDetails(),
+                    product.getPrice(),
+                    product.getAmountLeft(),
+                    clientsList
+            ));
+        productsList.setAll(products);
+        productsTable.setItems(productsList);
+    }
+
+    private void updateOrderTable() {
         Collection<OrderTableData> temp2 = new ArrayList<>();
         temp2.add(new OrderTableData(
                 "Aspirator 2000",
@@ -96,7 +118,7 @@ public class MainController extends WindowController implements IObserver {
 
     public void signOut() {
         try {
-            services.signOutUser(signedUser.getUsername(), this);
+            services.signOutUser(signedSalesperson.getUsername(), this);
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "logged out successfully");
             alert.show();
             ((Stage) topLabel.getScene().getWindow()).close();

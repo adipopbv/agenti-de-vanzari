@@ -1,6 +1,11 @@
 package clients.tableData;
 
+import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Spinner;
 import javafx.scene.layout.HBox;
+
 
 public class ProductTableData {
     private String name;
@@ -9,12 +14,21 @@ public class ProductTableData {
     private Integer amountLeft;
     private HBox actions;
 
-    public ProductTableData(String name, String details, Integer price, Integer amountLeft, HBox actions) {
+    public ProductTableData(String name, String details, Integer price, Integer amountLeft, ObservableList<ClientTableData> clients) {
         this.name = name;
         this.details = details;
         this.price = price;
         this.amountLeft = amountLeft;
-        this.actions = actions;
+        ChoiceBox<ClientTableData> clientsChoices = new ChoiceBox<>(clients);
+        Button orderButton = new Button("Place order");
+        orderButton.setOnAction(e -> {
+            orderProduct();
+        });
+        this.actions = new HBox(
+                clientsChoices,
+                new Spinner<Integer>(1, amountLeft, 1, 1),
+                orderButton
+        );
     }
 
     public String getName() {
@@ -55,5 +69,9 @@ public class ProductTableData {
 
     public void setActions(HBox actions) {
         this.actions = actions;
+    }
+
+    private void orderProduct() {
+        System.out.println("order placed");
     }
 }

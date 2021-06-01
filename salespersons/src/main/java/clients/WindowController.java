@@ -1,6 +1,6 @@
 package clients;
 
-import domain.User;
+import domain.Salesperson;
 import services.IServices;
 
 import java.io.Serializable;
@@ -9,13 +9,13 @@ import java.rmi.server.UnicastRemoteObject;
 
 public abstract class WindowController extends UnicastRemoteObject implements Serializable {
     protected IServices services = null;
-    protected User signedUser = null;
+    protected Salesperson signedSalesperson = null;
 
     protected WindowController() throws RemoteException {
     }
 
-    public void init(IServices services, User signedUser) {
+    public void init(IServices services, Salesperson signedSalesperson) {
         this.services = services;
-        this.signedUser = signedUser;
+        this.signedSalesperson = signedSalesperson;
     }
 }
