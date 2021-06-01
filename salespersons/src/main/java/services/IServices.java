@@ -18,4 +18,6 @@ public interface IServices {
     Collection<Product> getAllProducts();
 
     Collection<Order> getAllOrders();
+
+    Collection<Order> getAllOrdersBySalesperson(String username);
 }

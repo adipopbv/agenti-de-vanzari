@@ -1,25 +1,29 @@
 package domain;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 public class Order implements Serializable {
     private Integer id;
     private Integer productCount;
-    private LocalDateTime date;
+    private Timestamp date;
     private String status;
     private Product product;
+    private Client client;
+    private Salesperson salesperson;
 
     public Order() {
 
     }
 
-    public Order(Integer id, Integer productCount, LocalDateTime date, String status, Product product) {
+    public Order(Integer id, Integer productCount, Timestamp date, String status, Product product, Client client, Salesperson salesperson) {
         this.id = id;
         this.productCount = productCount;
         this.date = date;
         this.status = status;
         this.product = product;
+        this.client = client;
+        this.salesperson = salesperson;
     }
 
     public Integer getId() {
@@ -38,11 +42,11 @@ public class Order implements Serializable {
         this.productCount = productCount;
     }
 
-    public LocalDateTime getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 
@@ -60,5 +64,21 @@ public class Order implements Serializable {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Salesperson getSalesperson() {
+        return salesperson;
+    }
+
+    public void setSalesperson(Salesperson salesperson) {
+        this.salesperson = salesperson;
     }
 }

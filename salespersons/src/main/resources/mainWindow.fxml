@@ -32,7 +32,7 @@
         </Tab>
         <Tab closable="false" text="Orders history">
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                <TableView fx:id="ordersTable" prefHeight="461.0" prefWidth="923.0">
+                <TableView fx:id="ordersTable" prefHeight="515.0" prefWidth="1060.0">
                     <columns>
                         <TableColumn fx:id="orderProductNameColumn" maxWidth="240.0" minWidth="220.0" prefWidth="230.0"
                                      text="Product Name"/>
@@ -42,7 +42,7 @@
                                      text="Date"/>
                         <TableColumn fx:id="orderStatusColumn" maxWidth="120.0" minWidth="100.0" prefWidth="110.0"
                                      text="Status"/>
-                        <TableColumn fx:id="orderActionColumn" maxWidth="262.0" minWidth="252.0" prefWidth="262.0"/>
+                        <TableColumn fx:id="orderActionColumn" maxWidth="399.0" minWidth="252.0" prefWidth="399.0"/>
                     </columns>
                 </TableView>
             </AnchorPane>

@@ -34,7 +34,7 @@ public class SalespersonHibernateRepository extends HibernateRepository implemen
             Transaction transaction = null;
             try {
                 transaction = session.beginTransaction();
-                salespeople = session.createQuery("select salesperson from Salesperson salesperson", Salesperson.class).getResultList();
+                salespeople = session.createQuery("select s from Salesperson s", Salesperson.class).getResultList();
                 transaction.commit();
             } catch (RuntimeException exception) {
                 if (transaction != null)

@@ -42,7 +42,6 @@ public class SignInController extends WindowController {
             stage.show();
             ((Stage) usernameField.getScene().getWindow()).close();
         } catch (Exception exception) {
-            exception.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR, exception.getMessage());
             alert.show();
         }

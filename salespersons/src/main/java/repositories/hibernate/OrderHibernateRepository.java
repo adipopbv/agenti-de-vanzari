@@ -34,7 +34,7 @@ public class OrderHibernateRepository extends HibernateRepository implements Ord
             Transaction transaction = null;
             try {
                 transaction = session.beginTransaction();
-                salespeople = session.createQuery("select order from Order order", Order.class).getResultList();
+                salespeople = session.createQuery("select o from Order o join fetch o.product join fetch o.client join fetch o.salesperson", Order.class).getResultList();
                 transaction.commit();
             } catch (RuntimeException exception) {
                 if (transaction != null)
@@ -58,5 +58,25 @@ public class OrderHibernateRepository extends HibernateRepository implements Ord
     @Override
     public Order delete(Integer id) {
         return null;
+    }
+
+    @Override
+    public Iterable<Order> getAllBySalesperson(String username) {
+        List<Order> salespeople = new ArrayList<>();
+        try (Session session = sessionFactory.openSession()) {
+            Transaction transaction = null;
+            try {
+                transaction = session.beginTransaction();
+                salespeople = session.createQuery(
+                        "select o from Order o join fetch o.product join fetch o.client join fetch o.salesperson " +
+                                "where o.salesperson.username like '" + username + "'", Order.class).getResultList();
+                transaction.commit();
+            } catch (RuntimeException exception) {
+                if (transaction != null)
+                    transaction.rollback();
+            }
+        }
+
+        return salespeople;
     }
 }

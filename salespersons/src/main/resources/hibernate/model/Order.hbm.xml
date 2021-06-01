@@ -9,8 +9,10 @@
             <generator class="increment"/>
         </id>
         <property name="productCount" column="productCount" type="java.lang.Integer"/>
-        <property name="date" column="date" type="java.time.LocalDateTime"/>
+        <property name="date" column="date" type="java.sql.Timestamp"/>
         <property name="status" column="status" type="java.lang.String"/>
         <many-to-one name="product" cascade="all" column="productId"/>
+        <many-to-one name="client" cascade="all" column="clientId"/>
+        <many-to-one name="salesperson" cascade="all" column="salespersonUsername"/>
     </class>
 </hibernate-mapping>

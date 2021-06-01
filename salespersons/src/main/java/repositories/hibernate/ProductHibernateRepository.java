@@ -34,7 +34,7 @@ public class ProductHibernateRepository extends HibernateRepository implements P
             Transaction transaction = null;
             try {
                 transaction = session.beginTransaction();
-                salespeople = session.createQuery("select product from Product product", Product.class).getResultList();
+                salespeople = session.createQuery("select p from Product p", Product.class).getResultList();
                 transaction.commit();
             } catch (RuntimeException exception) {
                 if (transaction != null)

@@ -1,22 +1,35 @@
 package clients.tableData;
 
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class OrderTableData {
     private String productName;
     private Integer productCount;
-    private LocalDateTime date;
+    private Timestamp date;
     private String status;
     private HBox actions;
 
-    public OrderTableData(String productName, Integer productCount, LocalDateTime date, String status, HBox actions) {
+    public OrderTableData(String productName, Integer productCount, Timestamp date, String status) {
         this.productName = productName;
         this.productCount = productCount;
         this.date = date;
         this.status = status;
-        this.actions = actions;
+        Button cancelButton = new Button("Cancel");
+        cancelButton.setOnAction(e -> {
+            cancelOrder();
+        });
+        Button confirmButton = new Button("Confirm Delivery");
+        confirmButton.setOnAction(e -> {
+            confirmOrder();
+        });
+        this.actions = new HBox(
+                cancelButton,
+                confirmButton
+        );
     }
 
     public String getProductName() {
@@ -35,11 +48,11 @@ public class OrderTableData {
         this.productCount = productCount;
     }
 
-    public LocalDateTime getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 
@@ -57,5 +70,13 @@ public class OrderTableData {
 
     public void setActions(HBox actions) {
         this.actions = actions;
+    }
+
+    private void cancelOrder() {
+        System.out.println("order canceled");
+    }
+
+    private void confirmOrder() {
+        System.out.println("order confirmed");
     }
 }

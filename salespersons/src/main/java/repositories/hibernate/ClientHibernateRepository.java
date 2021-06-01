@@ -35,7 +35,7 @@ public class ClientHibernateRepository extends HibernateRepository implements Cl
             Transaction transaction = null;
             try {
                 transaction = session.beginTransaction();
-                salespeople = session.createQuery("select client from Client client", Client.class).getResultList();
+                salespeople = session.createQuery("select c from Client c", Client.class).getResultList();
                 transaction.commit();
             } catch (RuntimeException exception) {
                 if (transaction != null)

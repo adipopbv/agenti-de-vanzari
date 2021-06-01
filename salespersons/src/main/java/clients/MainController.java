@@ -4,13 +4,17 @@ import clients.tableData.ClientTableData;
 import clients.tableData.OrderTableData;
 import clients.tableData.ProductTableData;
 import domain.Client;
+import domain.Order;
 import domain.Product;
 import domain.Salesperson;
 import domain.observers.IObserver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -82,6 +86,7 @@ public class MainController extends WindowController implements IObserver {
         Collection<ClientTableData> clients = new ArrayList<>();
         for (Client client : services.getAllClients()) {
             clients.add(new ClientTableData(
+                    client.getId(),
                     client.getFirstName(),
                     client.getLastName()
             ));
@@ -104,15 +109,15 @@ public class MainController extends WindowController implements IObserver {
     }
 
     private void updateOrderTable() {
-        Collection<OrderTableData> temp2 = new ArrayList<>();
-        temp2.add(new OrderTableData(
-                "Aspirator 2000",
-                2,
-                LocalDateTime.now(),
-                "PROCESSING",
-                new HBox(new Button("Cancel"), new Button("Confirm Delivery"))
-        ));
-        ordersList.setAll(temp2);
+        Collection<OrderTableData> orders = new ArrayList<>();
+        for (Order order : services.getAllOrdersBySalesperson(signedSalesperson.getUsername()))
+            orders.add(new OrderTableData(
+                    order.getProduct().getName(),
+                    order.getProductCount(),
+                    order.getDate(),
+                    order.getStatus()
+            ));
+        ordersList.setAll(orders);
         ordersTable.setItems(ordersList);
     }
 

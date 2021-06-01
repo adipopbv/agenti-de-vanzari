@@ -77,4 +77,13 @@ public class Services implements IServices {
 
         return orders;
     }
+
+    @Override
+    public Collection<Order> getAllOrdersBySalesperson(String username) {
+        Collection<Order> orders = new ArrayList<>();
+        for (Order order : orderRepository.getAllBySalesperson(username))
+            orders.add(order);
+
+        return orders;
+    }
 }
