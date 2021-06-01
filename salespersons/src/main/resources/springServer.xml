@@ -14,7 +14,7 @@
     </bean>
 
     <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
-        <property name="serviceName" value="pr1Java"/>
+        <property name="serviceName" value="salespersons"/>
         <property name="service" ref="services"/>
         <property name="serviceInterface" value="services.IServices"/>
         <property name="servicePort" value="1099"/>

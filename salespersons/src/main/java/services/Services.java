@@ -5,7 +5,6 @@ import domain.Product;
 import domain.User;
 import domain.exceptions.SignInException;
 import domain.observers.IObserver;
-import repositories.IRepository;
 import repositories.OrderRepository;
 import repositories.ProductRepository;
 import repositories.UserRepository;
@@ -49,7 +48,7 @@ public class Services implements IServices {
     }
 
     @Override
-    public Collection<Product> getAllProducts() throws Exception {
+    public Collection<Product> getAllProducts() {
         Collection<Product> products = new ArrayList<>();
         for (Product product : productRepository.getAll())
             products.add(product);
@@ -58,7 +57,7 @@ public class Services implements IServices {
     }
 
     @Override
-    public Collection<Order> getAllOrders() throws Exception {
+    public Collection<Order> getAllOrders() {
         Collection<Order> orders = new ArrayList<>();
         for (Order order : orderRepository.getAll())
             orders.add(order);

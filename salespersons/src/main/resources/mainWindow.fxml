@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Text?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="550.0" prefWidth="950.0"
             style="-fx-background-color: #1E1F29;" xmlns="http://javafx.com/javafx/11.0.1"
-            fx:controller="clients.MainClient">
+            fx:controller="clients.MainController">
     <Text fx:id="topLabel" fill="WHITE" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0"
           text="Salesperson Placeholder">
         <font>

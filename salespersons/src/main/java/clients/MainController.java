@@ -2,6 +2,8 @@ package clients;
 
 import clients.tableData.OrderTableData;
 import clients.tableData.ProductTableData;
+import domain.User;
+import domain.observers.IObserver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,12 +11,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import services.IServices;
 
+import java.rmi.RemoteException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class MainClient {
+public class MainController extends WindowController implements IObserver {
     @FXML
     public Text topLabel;
 
@@ -45,7 +50,13 @@ public class MainClient {
     ObservableList<ProductTableData> productsList = FXCollections.observableArrayList();
     ObservableList<OrderTableData> ordersList = FXCollections.observableArrayList();
 
-    public void init() {
+    public MainController() throws RemoteException {
+    }
+
+    @Override
+    public void init(IServices services, User signedUser) {
+        super.init(services, signedUser);
+
         productNameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         productDetailsColumn.setCellValueFactory(new PropertyValueFactory<>("details"));
         productPriceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -81,5 +92,17 @@ public class MainClient {
         ));
         ordersList.setAll(temp2);
         ordersTable.setItems(ordersList);
+    }
+
+    public void signOut() {
+        try {
+            services.signOutUser(signedUser.getUsername(), this);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "logged out successfully");
+            alert.show();
+            ((Stage) topLabel.getScene().getWindow()).close();
+        } catch (Exception exception) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, exception.getMessage());
+            alert.show();
+        }
     }
 }

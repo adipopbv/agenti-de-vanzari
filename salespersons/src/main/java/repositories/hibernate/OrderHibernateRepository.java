@@ -3,6 +3,8 @@ package repositories.hibernate;
 import domain.Order;
 import repositories.OrderRepository;
 
+import java.util.ArrayList;
+
 public class OrderHibernateRepository implements OrderRepository {
     @Override
     public Order getOne(Integer integer) {
@@ -11,7 +13,7 @@ public class OrderHibernateRepository implements OrderRepository {
 
     @Override
     public Iterable<Order> getAll() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override

@@ -1,4 +1,6 @@
 package domain.observers;
 
-public interface IObserver {
+import java.rmi.Remote;
+
+public interface IObserver extends Remote {
 }

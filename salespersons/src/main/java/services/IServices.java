@@ -12,7 +12,7 @@ public interface IServices {
 
     void signOutUser(String username, IObserver client) throws Exception;
 
-    Collection<Product> getAllProducts() throws Exception;
+    Collection<Product> getAllProducts();
 
-    Collection<Order> getAllOrders() throws Exception;
+    Collection<Order> getAllOrders();
 }
