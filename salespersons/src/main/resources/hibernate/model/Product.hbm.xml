@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="domain.Product" table="products">
+        <id name="id" column="productId" type="java.lang.Integer">
+            <generator class="increment"/>
+        </id>
+        <property name="name" column="name" type="java.lang.String"/>
+        <property name="details" column="details" type="java.lang.String"/>
+        <property name="price" column="price" type="java.lang.Integer"/>
+        <property name="amountLeft" column="amountLeft" type="java.lang.Integer"/>
+    </class>
+</hibernate-mapping>

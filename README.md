@@ -32,6 +32,10 @@ O firma are mai multi agenti de vanzari, care fac comenzi pentru clientii firmei
 - reprezentarea scenariilor aferente cazurilor de utilizare din iteratia 1, prin diagrame de interactiune (diagrame de secventa si de comunicare/colaborare) 
 - rafinarea diagramei de clase initiale, cu includerea entitatilor din domeniul solutiei
 
+#### Laboratorul 5 
+
+- implementare iteratia 1: prima versiune functionala a aplicatiei
+
 ### FAZA III (Proiectare si implementare iteratii 2, 3) 
 
 #### Laboratorul 6 
