@@ -1,6 +1,5 @@
 package repositories;
 
-import domain.Product;
 import domain.exceptions.DuplicateException;
 import domain.exceptions.NotFoundException;
 
